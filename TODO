@@ -1,2 +1,2 @@
-* add ability to render default layout
 * convert commented specs to test/unit and make them pass
+* move modules and classes to separate files

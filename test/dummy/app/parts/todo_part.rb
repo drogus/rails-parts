@@ -2,7 +2,6 @@ class TodoPart < Parts::Part::Base
   before_filter :load_todos
 
   def list
-    render :list, :layout => "todo_part"
   end
 
   def one
