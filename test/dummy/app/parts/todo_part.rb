@@ -17,8 +17,4 @@ class TodoPart < Parts::Part::Base
 
   def part_with_params
   end
-
-  def parth_with_absolute_template
-    render :template => File.expand_path(self._template_root) / 'todo_part' / 'formatted_output'
-  end
 end

@@ -27,42 +27,36 @@ class PartsTest < ActiveSupport::TestCase
     assert_equal expected, last_response.body
   end
 
-#  it "should render the html format by default to the controller that set it" do
-#    controller = dispatch_to(Main, :index4)
-#    controller.body.should match(/part_html_format/m)
-#  end
-#
-#  it "should render the xml format according to the controller" do
-#    controller = dispatch_to(Main, :index4, {:format => 'xml'} )
-#    controller.body.should match(/part_xml_format/m)
-#  end
-#
-#  it "should render the js format according to the controller" do
-#    controller = dispatch_to(Main, :index4, :format => 'js')
-#    controller.body.should match(/part_js_format/m)
-#  end
-#
-#  it "should provide params when calling a part" do
-#    controller = dispatch_to(Main, :part_with_params)
-#    controller.body.should match( /my_param = my_value/)
-#    controller.body.should match( /my_second_param = my_value/)
-#  end
-#
-#  it "should provide arrays from params when calling a part" do
-#    controller = dispatch_to(Main, :part_with_arrays_in_params)
-#    controller.body.should match(/my_param = my_first_value, my_second_value/)
-#    controller.body.should match( /my_second_param = my_value/)
-#  end
-#
-#  it "should render from inside a view" do
-#    controller = dispatch_to(Main, :part_within_view)
-#    controller.body.should match( /Do this/)
-#  end
-#
-#  it "should render a template from an absolute path" do
-#    controller = dispatch_to(Main, :parth_with_absolute_template)
-#    controller.body.should match(/part_html_format/m)
-#  end
-#
+  test "render the html format by default to the controller that set it" do
+    get "/main/index4"
+    assert_match /part_html_format/m, last_response.body
+  end
+
+  test "render the xml format according to the controller" do
+    get "/main/index4.xml"
+    assert_match /part_xml_format/m, last_response.body
+  end
+
+  test "render the js format according to the controller" do
+    get "/main/index4.js"
+    assert_match /part_js_format/m, last_response.body
+  end
+
+  test "provide params when calling a part" do
+    get "/main/part_with_params"
+    assert_match /my_param = my_value/, last_response.body
+    assert_match /my_second_param = my_value/, last_response.body
+  end
+
+  test "provide arrays from params when calling a part" do
+    get "/main/part_with_arrays_in_params"
+    assert_match /my_param = my_first_value, my_second_value/, last_response.body
+    assert_match /my_second_param = my_value/, last_response.body
+  end
+
+  test "render from inside a view" do
+    get "/main/part_within_view"
+    assert_match /Do this/, last_response.body
+  end
 end
 

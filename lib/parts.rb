@@ -12,7 +12,6 @@ module Parts
 
   module Part
     class Base < AbstractController::Base
-      attr_accessor :response_body
       attr_reader :params
 
       def self.controller_name
@@ -29,12 +28,14 @@ module Parts
       include AbstractController::Helpers
       include AbstractController::Rendering
       include ActionController::ImplicitRender
-      include AbstractController::Callbacks
       include ::Parts::DefaultLayout
+
+      include AbstractController::Callbacks
 
       def initialize(controller, params)
         @controller = controller
         @params = params
+        self.formats = controller.formats
       end
     end
   end
@@ -46,10 +47,12 @@ module Parts
         k.respond_to?(:ancestors) && k.ancestors.include?(Parts::Part::Base)
       end
 
-      opts = Hash[*(opts.flatten)]
+      opts = opts.inject({}) {|h,v| h[v.first] = v.last; h}
 
       res = klasses.inject([]) do |memo,(klass,action)|
-        memo << klass.new(self, opts).process(action)
+        part = klass.new(self, opts)
+        part.process(action)
+        memo << part.response_body
       end
 
       res.size == 1 ? res[0] : res
