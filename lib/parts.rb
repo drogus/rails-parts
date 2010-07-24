@@ -1,12 +1,10 @@
 
 module Parts
   module DefaultLayout
-    def _normalize_options(options)
-      if options[:layout].nil? && template_exists?("layouts/#{controller_name}")
-        options[:layout] = controller_name
-      end
+    def _default_layout(require_layout = false)
+      layout_name = super
 
-      super(options)
+      layout_name || _layout || controller_name
     end
   end
 

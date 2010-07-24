@@ -8,6 +8,15 @@ class PartsTest < ActiveSupport::TestCase
     Rails.application
   end
 
+  test "allow override default layout" do
+    get "/main/override_default_layout"
+    assert_equal "FOO\nother_part\nFOO\n", last_response.body
+  end
+
+  test "render a part with custom layout" do
+    get "/main/with_custom_layout"
+    assert_equal "FOO\nTODOPART\nDo this|Do that|Do the other thing\nTODOPART\nFOO\n", last_response.body
+  end
 
   test "render a part template with no layout" do
     get "/main/index2"

@@ -17,4 +17,8 @@ class TodoPart < Parts::Part::Base
 
   def part_with_params
   end
+
+  def with_custom_layout
+    render :list, :layout => "foo"
+  end
 end

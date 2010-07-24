@@ -34,4 +34,11 @@ class MainController < ApplicationController
     render :text => res
   end
 
+  def with_custom_layout
+    render :text => part(TodoPart => :with_custom_layout)
+  end
+
+  def override_default_layout
+    render :text => part(OtherPart => :index)
+  end
 end
