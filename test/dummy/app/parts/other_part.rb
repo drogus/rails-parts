@@ -1,4 +1,4 @@
-class OtherPart < Parts::Part::Base
+class OtherPart < Parts::Base
   layout "foo"
 
   def index

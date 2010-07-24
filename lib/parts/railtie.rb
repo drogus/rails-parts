@@ -16,7 +16,7 @@ module Parts
       paths.app.parts.views 'app/parts/views'
 
       paths.app.parts.views.to_a.each do |path|
-        Parts::Part::Base.append_view_path path
+        Parts::Base.append_view_path path
       end
     end
   end

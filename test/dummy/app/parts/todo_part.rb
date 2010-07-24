@@ -1,4 +1,4 @@
-class TodoPart < Parts::Part::Base
+class TodoPart < Parts::Base
   before_filter :load_todos
 
   def list
