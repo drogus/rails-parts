@@ -1,3 +1,36 @@
-= Parts
+= Rails Parts
 
-This project rocks and uses MIT-LICENSE.
+Merb parts ported to rails.
+
+As it's initial and a bit experimental implementation please note that API can change (currently it's copied from Merb)
+
+== Usage
+
+Add part in app/parts, for example:
+
+    # app/parts/articles_part.rb
+    class ArticlesPart < Parts::Base
+      def index
+        @articles = Article.limit(10)
+      end
+    end
+
+    # app/parts/views/articles_part/index.html.erb
+    Articles: <%= @article.map(&:title).join(", ") %>
+
+Now you can render it with:
+
+    part ArticlesPart => :index
+
+You can also attach params that will be available in Part as <code>params</code> hash:
+
+    part ArticlesPart => :index, :limit => 5
+
+    # app/parts/articles_part.rb
+    class ArticlesPart < Parts::Base
+      def index
+        @articles = Article.limit(params[:limit] || 10)
+      end
+    end
+
+
