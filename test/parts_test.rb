@@ -67,5 +67,10 @@ class PartsTest < ActiveSupport::TestCase
     get "/main/part_within_view"
     assert_match /Do this/, last_response.body
   end
+
+  test "use helpers from application" do
+    get "/main/part_with_helpers"
+    assert_equal "<a href=\"#\">foo</a>\nfoo helper\n", last_response.body
+  end
 end
 

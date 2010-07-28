@@ -18,6 +18,8 @@ module Parts
       paths.app.parts.views.to_a.each do |path|
         Parts::Base.append_view_path path
       end
+
+      Parts::Base.helpers_path = paths.app.helpers.to_a.first
     end
   end
 end

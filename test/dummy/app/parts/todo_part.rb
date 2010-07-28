@@ -21,4 +21,8 @@ class TodoPart < Parts::Base
   def with_custom_layout
     render :list, :layout => "foo"
   end
+
+  def with_helpers
+    render :layout => false
+  end
 end

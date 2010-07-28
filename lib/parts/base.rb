@@ -6,7 +6,7 @@ module Parts
 
     include AbstractController::Layouts
     include AbstractController::Translation
-    include AbstractController::Helpers
+    include ActionController::Helpers
     include AbstractController::Rendering
     include ActionController::ImplicitRender
     include DefaultLayout
@@ -15,6 +15,11 @@ module Parts
     def initialize(controller, params)
       @params = params
       self.formats = controller.formats
+    end
+
+    def self.inherited(klass)
+      super
+      klass.helper :all
     end
   end
 end

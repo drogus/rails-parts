@@ -41,4 +41,8 @@ class MainController < ApplicationController
   def override_default_layout
     render :text => part(OtherPart => :index)
   end
+
+  def part_with_helpers
+    render :text => part(TodoPart => :with_helpers)
+  end
 end
