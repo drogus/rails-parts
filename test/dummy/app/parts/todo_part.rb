@@ -25,4 +25,8 @@ class TodoPart < Parts::Base
   def with_helpers
     render :layout => false
   end
+
+  def use_params
+    render :inline => "<%= params[:omg] %>"
+  end
 end

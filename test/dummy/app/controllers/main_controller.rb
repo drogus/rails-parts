@@ -45,4 +45,8 @@ class MainController < ApplicationController
   def part_with_helpers
     render :text => part(TodoPart => :with_helpers)
   end
+
+  def use_params
+    render :text => part(TodoPart => :use_params)
+  end
 end

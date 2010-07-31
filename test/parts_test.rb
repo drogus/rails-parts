@@ -72,5 +72,10 @@ class PartsTest < ActiveSupport::TestCase
     get "/main/part_with_helpers"
     assert_equal "<a href=\"#\">foo</a>\nfoo helper\n", last_response.body
   end
+
+  test "parts know controller's params" do
+    get "/main/use_params", :omg => "OMG! I'm controller's param!"
+    assert_equal "OMG! I'm controller's param!", last_response.body
+  end
 end
 

@@ -13,7 +13,8 @@ module Parts
     include AbstractController::Callbacks
 
     def initialize(controller, params)
-      @params = params
+      @params = controller.params.dup
+      @params.merge!(params) unless params.empty?
       self.formats = controller.formats
     end
 
