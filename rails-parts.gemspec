@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "rails-parts"
-  s.version     = "0.2.0"
+  s.version     = "0.3.0"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Piotr Sarnacki"]
   s.email       = ["drogus@gmail.com"]
