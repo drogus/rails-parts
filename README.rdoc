@@ -6,7 +6,11 @@ As it's initial and a bit experimental implementation please note that API can c
 
 == Usage
 
-Add part in app/parts, for example:
+Generate part class using rails generator:
+
+  rails generate part Articles index
+
+Add some logic to index method:
 
     # app/parts/articles_part.rb
     class ArticlesPart < Parts::Base
@@ -14,6 +18,8 @@ Add part in app/parts, for example:
         @articles = Article.limit(10)
       end
     end
+
+and to the view file
 
     # app/parts/views/articles_part/index.html.erb
     Articles: <%= @article.map(&:title).join(", ") %>
