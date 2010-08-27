@@ -10,7 +10,7 @@ Generate part class using rails generator:
 
   rails generate part Articles index
 
-Add some logic to index method:
+Add some logic to index method of your part:
 
     # app/parts/articles_part.rb
     class ArticlesPart < Parts::Base
@@ -19,14 +19,14 @@ Add some logic to index method:
       end
     end
 
-and to the view file
+and to the view file linked to the part
 
     # app/parts/views/articles_part/index.html.erb
     Articles: <%= @article.map(&:title).join(", ") %>
 
-Now you can render it with:
+Now you can render it in the view of any controller with:
 
-    part ArticlesPart => :index
+    <%= part ArticlesPart => :index %>
 
 You can also attach params that will be available in Part as <code>params</code> hash:
 
