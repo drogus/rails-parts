@@ -49,4 +49,8 @@ class MainController < ApplicationController
   def use_params
     render :text => part(TodoPart => :use_params)
   end
+
+  def part_renders_part
+    render :text => part(TodoPart => :part_renders_part)
+  end
 end

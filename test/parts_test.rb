@@ -77,5 +77,10 @@ class PartsTest < ActiveSupport::TestCase
     get "/main/use_params", :omg => "OMG! I'm controller's param!"
     assert_equal "OMG! I'm controller's param!", last_response.body
   end
+
+  test "parts can render other parts" do
+    get "main/part_renders_part"
+    assert_equal "one_part FOO\nother_part\nFOO\n\n", last_response.body
+  end
 end
 
