@@ -4,6 +4,16 @@ Merb parts ported to rails.
 
 As it's initial and a bit experimental implementation please note that API can change (currently it's copied from Merb)
 
+== Install
+
+Just add such line to Gemfile:
+
+  gem "rails-parts", :require => "parts"
+
+and run:
+
+  bundle install
+
 == Usage
 
 Generate part class using rails generator:
