@@ -21,7 +21,12 @@ module Parts
       end
 
       Parts::Base.helpers_path = paths.app.helpers.to_a.first
-      Parts::Base.config[:assets_dir] = ActionController::Base.config.assets_dir
+
+      [:assets_dir, :asset_host].each do |option|
+        unless Parts::Base.config[option]
+          Parts::Base.config[option] = ActionController::Base.config[option]
+        end
+      end
     end
   end
 end
