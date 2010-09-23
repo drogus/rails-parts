@@ -1,6 +1,10 @@
 class TodoPart < Parts::Base
   before_filter :load_todos
 
+  def with_url_helpers
+    render :layout => false
+  end
+
   def with_image
     render :layout => false
   end

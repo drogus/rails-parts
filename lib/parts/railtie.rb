@@ -1,5 +1,10 @@
 require "parts"
 require 'rails'
+begin
+  require "abstract_controller/railties/routes_helpers"
+rescue LoadError
+  # not on edge :(
+end
 
 module Parts
   class Railtie < Rails::Railtie
@@ -8,6 +13,15 @@ module Parts
         ActionView::Base.send(:include, Parts::Helpers)
         ActionController::Base.send(:include, Parts::Helpers)
         ActionController::Base.helper_method(:part)
+      end
+
+      ActiveSupport.on_load(:parts) do
+        if app.routes.respond_to?(:mounted_helpers)
+          include app.routes.mounted_helpers
+          extend ::AbstractController::Railties::RoutesHelpers.with(app.routes)
+        else
+          include app.routes.url_helpers
+        end
       end
     end
 

@@ -22,5 +22,7 @@ module Parts
       super
       klass.helper :all
     end
+
+    ActiveSupport.run_load_hooks(:parts, self)
   end
 end
