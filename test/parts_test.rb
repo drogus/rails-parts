@@ -8,6 +8,11 @@ class PartsTest < ActiveSupport::TestCase
     Rails.application
   end
 
+  test "allow using image tags in views" do
+    get "/main/with_image"
+    assert_equal "<img alt=\"Foo\" src=\"/images/foo.png\" />\n", last_response.body
+  end
+
   test "allow override default layout" do
     get "/main/override_default_layout"
     assert_equal "FOO\nother_part\nFOO\n", last_response.body

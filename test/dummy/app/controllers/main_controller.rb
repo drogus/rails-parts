@@ -1,4 +1,8 @@
 class MainController < ApplicationController
+  def with_image
+    render :text => part(TodoPart => :with_image)
+  end
+
   def index
     render :text => part(TodoPart => :list)
   end
