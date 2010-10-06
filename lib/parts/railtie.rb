@@ -12,7 +12,6 @@ module Parts
       ActiveSupport.on_load(:action_controller) do
         ActionView::Base.send(:include, Parts::Helpers)
         ActionController::Base.send(:include, Parts::Helpers)
-        ActionController::Base.helper_method(:part)
       end
 
       ActiveSupport.on_load(:parts) do
