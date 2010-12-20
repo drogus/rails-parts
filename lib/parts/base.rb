@@ -19,8 +19,10 @@ module Parts
       self.formats = controller.formats
     end
 
-    delegate :protect_against_forgery?, :session, :request_forgery_protection_token, :to => :controller
-    helper_method :protect_against_forgery?, :session, :request_forgery_protection_token
+    delegate  :protect_against_forgery?, :session,
+              :request_forgery_protection_token, :form_authenticity_token, :to => :controller
+    helper_method :protect_against_forgery?, :session,
+                  :request_forgery_protection_token, :form_authenticity_token
 
     def self.inherited(klass)
       super
