@@ -19,7 +19,7 @@ module Parts
       self.formats = controller.formats
     end
 
-    delegate  :protect_against_forgery?, :session,
+    delegate  :protect_against_forgery?, :session, :verified_request?, :form_authenticity_param,
               :request_forgery_protection_token, :form_authenticity_token, :to => :controller
     helper_method :protect_against_forgery?, :session,
                   :request_forgery_protection_token, :form_authenticity_token
