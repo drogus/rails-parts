@@ -2,7 +2,7 @@ require 'parts/default_layout'
 
 module Parts
   class Base < AbstractController::Base
-    attr_reader :params
+    attr_reader :params, :controller
 
     include AbstractController::Layouts
     include AbstractController::Translation
@@ -13,10 +13,14 @@ module Parts
     include AbstractController::Callbacks
 
     def initialize(controller, params)
+      @controller = controller
       @params = controller.params.dup
       @params.merge!(params) unless params.empty?
       self.formats = controller.formats
     end
+
+    delegate :protect_against_forgery?, :session, :to => :controller
+    helper_method :protect_against_forgery?, :session
 
     def self.inherited(klass)
       super

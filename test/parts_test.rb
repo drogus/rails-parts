@@ -8,6 +8,11 @@ class PartsTest < ActiveSupport::TestCase
     Rails.application
   end
 
+  test "rendering form_tag" do
+    get "/main/with_form"
+    assert_match /form/, last_response.body
+  end
+
   test "allow using url helpers inside parts" do
     get "/main/with_url_helpers"
     assert_equal "/foo\n", last_response.body

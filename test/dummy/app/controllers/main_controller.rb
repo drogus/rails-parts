@@ -1,4 +1,8 @@
 class MainController < ApplicationController
+  def with_form
+    render :text => part(TodoPart => :with_form)
+  end
+
   def with_url_helpers
     render :text => part(TodoPart => :with_url_helpers)
   end
