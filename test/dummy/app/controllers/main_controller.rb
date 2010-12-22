@@ -41,6 +41,10 @@ class MainController < ApplicationController
   def part_within_view
   end
 
+  def part_within_part_action
+    render :text => part(TodoPart => :part_within_part_action)
+  end
+
   def parth_with_absolute_template
     res = part(TodoPart => :parth_with_absolute_template)
     render :text => res

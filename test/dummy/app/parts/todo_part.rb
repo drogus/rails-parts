@@ -41,4 +41,8 @@ class TodoPart < Parts::Base
   def part_renders_part
     render :layout => false
   end
+
+  def part_within_part_action
+    render :text => part(TodoPart => :one)
+  end
 end

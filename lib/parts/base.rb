@@ -1,4 +1,5 @@
 require 'parts/default_layout'
+require 'parts/helpers'
 
 module Parts
   class Base < AbstractController::Base
@@ -28,6 +29,9 @@ module Parts
       super
       klass.helper :all
     end
+
+    include Parts::Helpers
+    helper_method :part
 
     ActiveSupport.run_load_hooks(:parts, self)
   end

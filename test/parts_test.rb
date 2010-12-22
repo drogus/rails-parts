@@ -78,6 +78,11 @@ class PartsTest < ActiveSupport::TestCase
     assert_match /my_second_param = my_value/, last_response.body
   end
 
+  test "render from inside action" do
+    get "/main/part_within_part_action"
+    assert_match /Do this/, last_response.body
+  end
+
   test "render from inside a view" do
     get "/main/part_within_view"
     assert_match /Do this/, last_response.body
